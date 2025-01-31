@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Be My Valentine</title>
+    <link rel="stylesheet" href="css/valentine.css" />
+  </head>
+  <body>
+    <div id="valentineQuestion"><b>Will you be my valentine?</b></div>
+    <button class="answerButton" onclick="location.href='thankyou.html'">
+      Yes
+    </button>
+    <button class="answerButton" id="noButton">Nahhh ewww</button>
+    <br />
+    <img src="gfpics/1000010116.png" alt="cat asking question" class="responsive gif" />
+
+    <script>
+      let noButtonClickCount = 0;
+      document.getElementById("noButton").addEventListener("click", function () {
+    noButtonClickCount++;
+
+    var yesButton = document.querySelector('button[onclick*="thankyou.html"]');
+    var currentFontSize = parseInt(window.getComputedStyle(yesButton).fontSize);
+    yesButton.style.fontSize = currentFontSize + 10 + "px"; // Increase font size by 10px
+
+         
+    // Change the image source to a local JPG picture
+    var gif = document.querySelector(".gif");
+    if (noButtonClickCount > 6) {
+      gif.src = "gfpics/1000010141.jpg"; // Change to another image after 6 clicks
+      // Show a message
+      const message = document.createElement("div");
+      message.className = "click-message";
+      message.innerHTML = "You can't escape me hehehe";
+      document.body.appendChild(message);
+
+      // Position the message below the image
+      const gifRect = gif.getBoundingClientRect();
+      message.style.position = "absolute";
+      message.style.left = gifRect.left + "px";
+      message.style.top = (gifRect.bottom + 10) + "px"; // Adjust as needed
+    } else {
+      gif.src = "gfpics/1000008207.jpg "; // Initial image change
+    }
+        });
+    </script>
+  </body>
+</html>
